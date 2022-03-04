@@ -1,0 +1,3 @@
+-- insert into students values(1, 'The tartar steppe');
+-- insert into students values(2, 'Poem Strip');
+-- insert into students values(3, 'Calculus Stewart');
