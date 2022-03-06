@@ -1,5 +1,7 @@
 package Topic5.databases.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +17,13 @@ public class Course {
     private String name;
     private String faculty;
 
+    /*
+    Owner side: here we configure the relationship
+    For solve the HttpMessageNotWritableException we have to write the
+    JsonBackReference in the OWNER side
+     */
     @ManyToMany
+    @JsonBackReference
     @JoinTable(name = "registers", joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id") )
     private Set<Student> students = new HashSet<>();
@@ -26,6 +34,14 @@ public class Course {
     }
     public Course(){
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

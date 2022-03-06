@@ -1,5 +1,7 @@
 package Topic5.databases.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +17,13 @@ public class Student {
     private Long phone;
     private String address;
 
+    /*
+    The other side has to have the JsonManagedReference for solve the HttpMessageNotWritableException
+    error
+    */
+
     @ManyToMany(mappedBy = "students")
+    @JsonManagedReference
     private Set<Course> courses = new HashSet<>();
 
     public Student(){

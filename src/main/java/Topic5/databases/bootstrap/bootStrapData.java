@@ -13,7 +13,7 @@ public class bootStrapData  implements CommandLineRunner {
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
 
-    // Dependecy injection by constructor
+    // Dependency injection by constructor
     public bootStrapData(StudentRepository studentRepository, CourseRepository courseRepository) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
@@ -35,7 +35,25 @@ public class bootStrapData  implements CommandLineRunner {
         studentRepository.save(juan);
         courseRepository.save(calculus);
 
-        Student kat = new Student("katherin Acosta", 3214232453L ,"Av Villav");
+        Student sofi = new Student("Sofia Acosta", 3153102345L ,"Av Mariscal");
+        Course guitar = new Course("guitar", "Music");
+
+        sofi.getCourses().add(guitar);
+        guitar.getStudents().add(sofi);
+
+        studentRepository.save(sofi);
+        courseRepository.save(guitar);
+
+        Student julian = new Student("Julian Lozano", 52543234L ,"Av Mointagne");
+        Course programming = new Course("Databases", "Science");
+
+        julian.getCourses().add(programming);
+        programming.getStudents().add(julian);
+
+        studentRepository.save(julian);
+        courseRepository.save(programming);
+
+        Student kat = new Student("katherin Acosta", 3214232453L ,"Av Villavicencio");
         Course familyLaw = new Course("Family law", "Law");
 
         kat.getCourses().add(familyLaw);
@@ -43,9 +61,5 @@ public class bootStrapData  implements CommandLineRunner {
 
         studentRepository.save(kat);
         courseRepository.save(familyLaw);
-
-        System.out.println("Started in Bootstrap");
-        System.out.println("Number of courses: " + courseRepository.count());
-
     }
 }
